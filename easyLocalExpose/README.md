@@ -21,8 +21,8 @@ Token de ngrok (gratis): [dashboard.ngrok.com/get-started/your-authtoken](https:
 
 
 
-- Windows [click para la descarga](./builds/easyTunnel.exe)
-- Linux [click para la descarga](./builds/easyTunnel)
+- Windows [click para la descarga](https://github.com/mig-af/scripts/raw/refs/heads/main/easyLocalExpose/builds/easyTunnel.exe)
+- Linux [click para la descarga](https://github.com/mig-af/scripts/raw/refs/heads/main/easyLocalExpose/builds/easyTunnel)
 
 ## Uso
 
