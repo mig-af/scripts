@@ -9,14 +9,11 @@ import (
 	"os/signal"
 	"syscall"
 	"path/filepath"
-
 	"golang.ngrok.com/ngrok/v2"
 )
 
 
 func CreateTunnel(port string, system string, ctx context.Context){
-	
-	
 	token, erro := LoadToken()
 	if(erro != nil){
 		fmt.Println(erro)
@@ -44,10 +41,7 @@ func CreateTunnel(port string, system string, ctx context.Context){
 
 func ExposeServer(port string, path string, system string){
 	ctx:= context.Background()
-	
-	
 	stop := make(chan os.Signal, 1)
-
 	infoServer := make(chan *http.Server)
 	go Server(port, path, infoServer)
 	server := <- infoServer
@@ -55,36 +49,26 @@ func ExposeServer(port string, path string, system string){
 	fmt.Println("Servidor iniciado en el puerto:"+port)
 	fmt.Println("Servidor:\033[0;32m http://127.0.0.1"+server.Addr+"\033[0m")
 
-
-
 	CreateTunnel(port, system, ctx)
-
-
 	//close server 
 	signal.Notify(stop, syscall.SIGINT, os.Interrupt)
 	<- stop 
 	fmt.Println("Server stoped")
 	server.Shutdown(ctx)
-
-
 }
 
 
 func LoadToken()(string, error){
-	
 	path, err := os.UserConfigDir()
 	if(err != nil){
 		panic("Ocurrio un error inesperado: "+ err.Error())
 		
 	}
-
 	absolutePath := filepath.Join(path, config.AppName)
 	absolutePathToken := filepath.Join(absolutePath, config.NameTokenFile)
-
 	resp , err := os.ReadFile(absolutePathToken)
 	if(err != nil){
 		panic(err)
-	
 	}
 	return string(resp), nil
 }

@@ -10,8 +10,6 @@ import (
 
 
 func Server(port string, path string, serv chan *http.Server ){
-	
-	
 	mux := http.NewServeMux()
 	mux.Handle("/", http.FileServer(http.Dir(path)))
 
@@ -23,9 +21,9 @@ func Server(port string, path string, serv chan *http.Server ){
 		ReadHeaderTimeout: 5 * time.Second,
 		ReadTimeout: 5 * time.Second,
 		WriteTimeout: 5* time.Second,
-		IdleTimeout: 30 * time.Second,
+		IdleTimeout: 60 * time.Second,
 	}
-	defer server.Close()
+	
 	go func(){
 		serverErro := server.ListenAndServe()
 		if( serverErro!= nil ){

@@ -17,15 +17,12 @@ func Menu(){
 	var path string
 	systemName := runtime.GOOS
 
-	
 	Loop:
 	for {
 		fmt.Println(Options())
 		fmt.Print(Yellow+"Elige una opcion: "+End)
 		_, err := fmt.Scanln(&option)
 		if(err != nil){
-			//fmt.Println("erro: scan ",err)
-			
 			continue
 		}
 
